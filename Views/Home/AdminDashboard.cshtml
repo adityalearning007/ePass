@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ePass.Passenger>
+
+@{
+    ViewBag.Title = "AdminDashboard";
+}
+
+<h2>Dashboard</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+           First Name
+        </th>
+        <th>
+          Last Name
+        </th>
+        <th>
+           Email Id
+        </th>
+        <th>
+            Source 
+        </th>
+        <th>
+           Destination
+        </th>
+        <th>
+            Date of Travel
+        </th>
+        <th>
+            Adhar Card
+        </th>
+        <th hidden>
+            @*@Html.DisplayNameFor(model => model.CreatedDt)*@
+        </th>
+        <th>
+            Current Status
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.firstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EmailId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SourcePlace)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DestinationPlace)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateOfTravel)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AdharCard)
+    </td>
+    <td hidden>
+        @Html.DisplayFor(modelItem => item.CreatedDt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    @if (item.Status=="Pending")
+    {
+        <td>
+            <button class="btn btn-success">Approve</button> &nbsp;
+            <button class="btn btn-danger">Reject</button>
+        </td>
+
+    }
+
+</tr>
+}
+
+</table>

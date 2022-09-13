@@ -1,0 +1,21 @@
+﻿@model ePass.Models.PassengerDataViewModel
+
+
+@{
+    ViewBag.Title = "GetStatusByMobile";
+}
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+
+        <div class="col-md-10">
+            Mobile No
+            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
+            <br />
+            <input type="submit" value="Search" class="btn btn-warning" />
+        </div>
+    </div>
+}
+
