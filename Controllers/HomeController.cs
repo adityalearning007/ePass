@@ -10,19 +10,6 @@ namespace ePass.Controllers
     public class HomeController : Controller
     {
 
-        public ActionResult DummyApi()
-        {
-            return View();
-        }
-        [HttpPost]
-        public int ValidateMyData(int FirstNumber,int SecondNumber)
-        {
-            return FirstNumber + SecondNumber;
-        }
-
-
-
-
         public ActionResult Login()
         {
             //using (ePassEntities ObjContext = new ePassEntities())
@@ -93,6 +80,21 @@ namespace ePass.Controllers
             }
 
             return View(LstPassenger);
+        }
+
+        public ActionResult updatePassengerStatus(string Status,int Id)
+        {
+            using (ePassEntities ObjContext = new ePassEntities())
+            {
+                var Passenger = ObjContext.Passengers.Where(x => x.Id == Id).FirstOrDefault();
+                if (Passenger != null)
+                {
+                    Passenger.Status = Status;
+                    ObjContext.SaveChanges();
+                }
+
+            }
+            return RedirectToAction("AdminDashboard","Home");
         }
 
 

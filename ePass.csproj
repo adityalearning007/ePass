@@ -211,7 +211,6 @@
     <Content Include="Views\Home\AdminDashboard.cshtml" />
     <Content Include="Views\Passenger\GetStatusByMobile.cshtml" />
     <Content Include="Views\Passenger\PassengerStatus.cshtml" />
-    <Content Include="Views\Home\DummyApi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
