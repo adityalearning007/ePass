@@ -21,8 +21,17 @@
           <Property Name="Status" Type="varchar" MaxLength="30" />
           <Property Name="MobileNo" Type="varchar" MaxLength="15" />
         </EntityType>
+        <EntityType Name="tbladmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityContainer Name="ePassModelStoreContainer">
           <EntitySet Name="Passenger" EntityType="Self.Passenger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbladmin" EntityType="Self.tbladmin" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -46,7 +55,16 @@
         </EntityType>
         <EntityContainer Name="ePassEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Passengers" EntityType="Self.Passenger" />
+          <EntitySet Name="tbladmins" EntityType="ePassModel.tbladmin" />
         </EntityContainer>
+        <EntityType Name="tbladmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -67,6 +85,15 @@
                 <ScalarProperty Name="DateOfTravel" ColumnName="DateOfTravel" />
                 <ScalarProperty Name="AdharCard" ColumnName="AdharCard" />
                 <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbladmins">
+            <EntityTypeMapping TypeName="ePassModel.tbladmin">
+              <MappingFragment StoreEntitySet="tbladmin">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

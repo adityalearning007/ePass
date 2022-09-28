@@ -9,34 +9,33 @@ namespace ePass.Controllers
 {
     public class HomeController : Controller
     {
-
         public ActionResult Login()
         {
-            //using (ePassEntities ObjContext = new ePassEntities())
-            //{
-            //   var StudentData = ObjContext.Passengers.Where(x => x.Id == 1).FirstOrDefault();
-
-            //    if (StudentData != null)
-            //    {
-            //        StudentData.firstName = "Sunny";       
-            //        ObjContext.SaveChanges();
-            //    }
-            //}
-
-                return View();
+            tbladmin obj = new tbladmin();
+            return View(obj);
         }
-        //string Username,string Password
-        public ActionResult ValidateUser(string Username, string Password)
+        [HttpPost]
+        public ActionResult Login(tbladmin Obj)
         {
-            if (Username == "admin" & Password == "123")
+            //tbladmin Objadmin = new tbladmin();
+            List<tbladmin> LstAdmin = null;
+            using (ePassEntities ObjContext = new ePassEntities())
             {
-                return View("Dashboard");
+               LstAdmin = ObjContext.tbladmins.Where(x => x.Username == Obj.Username && x.Password == Obj.Password).ToList();                
+               
+            }
+            if (LstAdmin.Count > 0)
+            {
+                Session["username"] = LstAdmin[0].Id;
+                return RedirectToAction("AdminDashboard", "Home");
             }
             else
             {
-                return View("Login");
+                return View(Obj);
             }
+            
         }
+
         public ActionResult Dashboard()
         {
             return View();
@@ -72,14 +71,19 @@ namespace ePass.Controllers
         }
         public ActionResult AdminDashboard()
         {
-            List<Passenger> LstPassenger = null;
-
-            using (ePassEntities ObjContext = new ePassEntities())
+            if (Session["username"] != null)//set session
             {
-                LstPassenger = ObjContext.Passengers.ToList();
+                List<Passenger> LstPassenger = null;
+                using (ePassEntities ObjContext = new ePassEntities())
+                {
+                    LstPassenger = ObjContext.Passengers.ToList();
+                }
+                return View(LstPassenger);
             }
-
-            return View(LstPassenger);
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         public ActionResult updatePassengerStatus(string Status,int Id)

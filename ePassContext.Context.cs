@@ -26,5 +26,6 @@ namespace ePass
         }
     
         public virtual DbSet<Passenger> Passengers { get; set; }
+        public virtual DbSet<tbladmin> tbladmins { get; set; }
     }
 }
