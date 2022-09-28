@@ -4,89 +4,94 @@
     ViewBag.Title = "Passenger";
 }
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
-    @*@Html.AntiForgeryToken()*@   
+    @*@Html.AntiForgeryToken()*@
     <div style="text-align:center">
-        <h3> Raise Travel Request </h3>
+        <h3> Book e-Pass </h3>
     </div>
-    <br/>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">                  
-                    <div>
-                        First Name
-                        @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">                  
-                    <div>
-                        Last Name
-                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        </div>   
-        <div class="row">
-            <div class="col-md-6">
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
                 <div>
-                    Email
-                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div>
-                    Source
-                    @Html.EditorFor(model => model.SourcePlace, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SourcePlace, "", new { @class = "text-danger" })
+                    First Name
+                    @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
+        <div class="col-md-6">
+            <div class="form-group">
                 <div>
-                    Destination Place
-                    @Html.EditorFor(model => model.DestinationPlace, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DestinationPlace, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div>
-                    Date of Travel
-                    @Html.EditorFor(model => model.DateOfTravel, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DateOfTravel, "", new { @class = "text-danger" })
+                    Last Name
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                Email
+                @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div>
+                Source
+                @Html.EditorFor(model => model.SourcePlace, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SourcePlace, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                Destination Place
+                @Html.EditorFor(model => model.DestinationPlace, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DestinationPlace, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div>
+                Date of Travel
+                @Html.EditorFor(model => model.DateOfTravel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateOfTravel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                Adhar Card
+                @Html.EditorFor(model => model.AdharCard, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AdharCard, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+    </div>
+    <br />
+    <div>
         <div class="row">
             <div class="col-md-6">
                 <div>
-                    Adhar Card
-                    @Html.EditorFor(model => model.AdharCard, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.AdharCard, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <br/>           
-        </div>
-        <br/>
-        <div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        <input type="submit" value="Save" class="btn btn-warning"    />
-                    </div>
+                    <input type="submit" value="Save" class="btn btn-warning" />
                 </div>
             </div>
         </div>
-        
+    </div>
 
-     
-   
+
+
+
 }
 
+<script>
+    $(document).ready(function () {
+        $("#EnterDate").datepicker();
+    });
+</script>
